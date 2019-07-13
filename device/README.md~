@@ -1,0 +1,7 @@
+## themperature sensor
+
+To read the themperature:
+```
+cat /sys/devices/w1_bus_master1/28-*/w1_slave
+```
+

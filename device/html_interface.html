@@ -1,0 +1,72 @@
+<head>
+<style>
+<!--
+/**
+ * half rows
+ */
+
+.horizontal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 50%;
+}
+
+.side {
+  display: flex;
+  justify-content: center;
+  /* align horizontal */
+  align-items: center;
+  /* align vertical */
+  background-color: #AE8;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  font-family: Helvetica;
+  font-size: 3em;
+  float: left;
+}
+
+#top {
+  top: 0;
+}
+
+#bottom {
+  bottom: 0;
+}
+
+-->
+</style>
+</head>
+<!--
+* IoHeat *
+Raspberry Pi HTML interface demo
+-->
+
+<div id="top" class="horizontal">
+  <a href="http://twitter.com/">
+    <div class="side">
+      Hello1
+    </div>
+  </a>
+  <a href="http://twitter.com/">
+    <div class="side" style="background-color: #DF8;">
+      Hello2
+    </div>
+  </a>
+
+</div>
+<div id="bottom" class="horizontal">
+  <a href="http://twitter.com/">
+    <div class="side" style="background-color: #DF8;">
+      Twitter
+    </div>
+  </a>
+  <a href="http://github.com/">
+    <div class="side">
+      GitHub
+    </div>
+  </a>
+
+</div>
+
