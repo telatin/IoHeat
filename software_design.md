@@ -22,10 +22,22 @@ They will all update the **IoH Server** via web API.
 * **ioh_stop** -- stop the _ioh\_thermostat_ script and set status to 0.
 
 
+## User interface A: Telegram
 
-## The webserver
+Installing a Telegram BOT in the device, it's possible to bypass the need for an external webserver (the direct connection to the device is not implemented for security reasons).
+
+The bot should expose these methods:
+* **/status** returning temperature, humidity, if the warming cycle is active or not (and if the heater is on at the moment)
+* **/start** will start the warming cycle to the desired temperature
+  * This will support a specification of date/time
+* **/stop** will stop the warming cycle
+
+
+## User interface B: The webserver
 
 The webserver is able to control multiple devices and multiple users.
+With a responsive HTML interface it's a solution that is accessible from mobile devices, desktop computers and the device itself via touch screen.
+
 * Users can register themselves (database table "users"), and associate a device (how? this issue will probably not addressed at this stage.)
 * There is a set of administrators (database table "admins")
 * Each device can register itself via _ioh\_register_. (database table "devices")
