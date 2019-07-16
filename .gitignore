@@ -8,6 +8,8 @@ local/
 *.pm.tdy
 *.bs
 
+.DS_Store
+
 # Devel::Cover
 cover_db/
 
