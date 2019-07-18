@@ -29,6 +29,9 @@ ioheat.py [options] [-a action]
  - **-j, --json**
  If used with `-a status`, will print the output in JSON format
  
+ 
+Suggestion: add to the _crontab_ a job for `ioheat.py -a status` to prevent accidental overheat (e.g. every 30 minutes).
+ 
 ## giovanni_bot.py (beta)
 
 Starts the Telegram BOT. This is a preliminary release.
