@@ -2,7 +2,7 @@
 
 [![Twitter URL](https://img.shields.io/badge/Twitter-IoHeat-blue.svg)](https://twitter.com/hashtag/IoHeat)
 
-![IoHeat logo](https://github.com/telatin/IoHeat/blob/master/misc/logo_small_0.png | width=100)
+![IoHeat logo](https://github.com/telatin/IoHeat/blob/master/misc/logo_small_0.png)
 
 
 ## Repository content
