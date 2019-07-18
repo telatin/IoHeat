@@ -1,8 +1,8 @@
 # IoHeat
 
-[![Twitter URL](https://img.shields.io/badge/Twitter-#IoHeat-blue.svg)](https://twitter.com/hashtag/IoHeat)
+[![Twitter URL](https://img.shields.io/badge/Twitter-IoHeat-blue.svg)](https://twitter.com/hashtag/IoHeat)
 
-![IoHeat logo](https://github.com/telatin/IoHeat/blob/master/misc/logo_small_0.png)
+![IoHeat logo](https://github.com/telatin/IoHeat/blob/master/misc/logo_small_0.png = 250x250)
 
 
 ## Repository content
