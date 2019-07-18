@@ -1,6 +1,6 @@
 # IoHeat
 
-### A remotely controlled chamber in a coldroom/fridge that allows the heating of stored items to a desired temperature before being used
+A remotely controlled chamber in a coldroom  that allows the heating of stored items to a desired temperature before being used
 
 [![Twitter URL](https://img.shields.io/badge/Twitter-IoHeat-blue.svg)](https://twitter.com/hashtag/IoHeat)
 
