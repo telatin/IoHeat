@@ -4,9 +4,9 @@
 
 
 ## Repository content
+ - **[device](device/README.md)** - scripts to manage the _IO/Heat_ device from the command line
  - **www** - frontend to manage the _IO/Heat_ device
- - **db** - SQLite3 database schemas
- - **api** - scripts to manage the _IO/Heat_ device from the command line
+   - **db** - SQLite3 database schemas
  - **misc** - other project file
 
 ## User interfaces
