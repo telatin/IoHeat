@@ -1,12 +1,5 @@
 # Raspberry Pi configuration notes
 
-## ioheat.py
-
-
-
-
-# Unused documentation
-
 ## DS18B20 themperature sensor
 
  -  See: [tutorial](http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/)
