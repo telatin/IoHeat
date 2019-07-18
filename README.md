@@ -14,3 +14,11 @@
 ## User interfaces
  - Telegram Bot (first to be implemented, for testing)
  - Web interface [IO/HEAT webserver](https://seq.space/apps/ioheat/)
+
+## Project
+
+Making of **IoHeat** (codenamed _Giovanni_)
+![Building IoHeat](https://raw.githubusercontent.com/telatin/IoHeat/master/misc/making_giovanni_small.jpg)
+
+Testing **IoHeat** in the Cold Room
+![Testing IoHeat](https://github.com/telatin/IoHeat/edit/master/README.md)
