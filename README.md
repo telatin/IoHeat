@@ -1,5 +1,7 @@
 # IoHeat
 
+[![Twitter URL](https://img.shields.io/twitter/url/https/hashtag/IoHeat.svg?style=popout)](https://twitter.com/hashtag/IoHeat)
+
 ![IoHeat logo](https://github.com/telatin/IoHeat/blob/master/misc/logo_small_0.png)
 
 
