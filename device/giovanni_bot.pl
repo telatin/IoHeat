@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 #  Telegram Bot for IO/Heat
-use strict;
+#  Working Draft
+
+use 5.018;
 use warnings;
 use WWW::Telegram::BotAPI;
 use utf8;
@@ -8,19 +10,20 @@ use Data::Dumper;
 use Term::ANSIColor;
 use FindBin qw($RealBin);
 use JSON::PP;
+
 our $controller = "$RealBin/ioheat.py";
 our %symbol = (
-    'ok'   => "\x{2705}",
-    'no'   => "\x{1f6ab}",
-    'soon' => "\x{1f51c}",
+    'ok'       => "\x{2705}",
+    'no'       => "\x{1f6ab}",
+    'soon'     => "\x{1f51c}",
     'redcross' =>  "\x{274c}",
-    'clock'=>  "\x{1f559}",
-    'bug'  => "\x{1f41e}",
+    'clock'    =>  "\x{1f559}",
+    'bug'      => "\x{1f41e}",
 
-    'R'    => "\x{1f422}",
-    'Q'    => "\x{1f559}",
-    'C'    => "\x{2705}",
-    'H'    => "\x{1f6ab}",
+    'R'        => "\x{1f422}",
+    'Q'        => "\x{1f559}",
+    'C'        => "\x{2705}",
+    'H'        => "\x{1f6ab}",
 );
 
 our $conf;
@@ -29,7 +32,7 @@ my ($verbose, $debug, $opt_token) = @ARGV;
 
 
 
-
+# get Telegram API token
 unless (defined $opt_token) {
     if ( -e "$ENV{HOME}/.IoHeat.conf" ) {
         $conf = readConfigFromFile("$ENV{HOME}/.IoHeat.conf");
@@ -50,19 +53,20 @@ $api->agent->can ("inactivity_timeout") and $api->agent->inactivity_timeout (45)
 my $me = $api->getMe or die;
 my ($offset, $updates) = 0;
 
-# The commands that this bot supports.
-my $pic_id; # file_id of the last sent picture
+# The commands that this bot supports.# file_id of the last sent picture
+my $pic_id; 
 
 my $commands = {
     # Example demonstrating the use of parameters in a command.
     "say"      => sub {
             join " ", splice @_, 1 or "Usage: /say something";
     },
-    # Example showing how to use the result of an API call.
+    
+    
     "whoami"   => sub {
         sprintf "Hello %s, I am %s, your lab technician! How are you?", shift->{from}{username}, $me->{result}{username}
     },
-
+ 
     "temp"    => sub {
         my $s = getStatus();
         sprintf "The device is ready.\nCurrent temperature %s degrees.\nStay warm %s!", sprintf("%.1f", $s->{status}->{temperature}), shift->{from}{username};
@@ -406,113 +410,3 @@ sub deb_warn {
 }
 __END__
 
-# Location
-$VAR1 = {
-          'message' => {
-                       'location' => {
-                                     'latitude' => '52.623444',
-                                     'longitude' => '1.224457'
-                                   },
-                       'from' => {
-                                 'is_bot' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
-                                 'language_code' => 'en-IT',
-                                 'first_name' => 'Proch',
-                                 'last_name' => 'Genomics 36',
-                                 'id' => 379759508,
-                                 'username' => 'telatin'
-                               },
-                       'message_id' => 45,
-                       'date' => 1515082111,
-                       'chat' => {
-                                 'type' => 'private',
-                                 'id' => 379759508,
-                                 'username' => 'telatin',
-                                 'first_name' => 'Proch',
-                                 'last_name' => 'Genomics 36'
-                               }
-                     },
-          'update_id' => 89207154
-        };
-
-
-# CONTACT
-
-$VAR1 = {
-          'message' => {
-                       'chat' => {
-                                 'type' => 'private',
-                                 'id' => 379759508,
-                                 'username' => 'telatin',
-                                 'first_name' => 'Proch',
-                                 'last_name' => 'Genomics 36'
-                               },
-                       'date' => 1515082217,
-                       'from' => {
-                                 'is_bot' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
-                                 'language_code' => 'en-IT',
-                                 'last_name' => 'Genomics 36',
-                                 'first_name' => 'Proch',
-                                 'id' => 379759508,
-                                 'username' => 'telatin'
-                               },
-                       'message_id' => 47,
-                       'contact' => {
-                                    'phone_number' => '3473445123',
-                                    'last_name' => 'Alberti',
-                                    'first_name' => 'Saverio'
-                                  }
-                     },
-          'update_id' => 89207156
-        };
-
-
-
-# PHOTO
-          'update_id' => 89207155,
-          'message' => {
-                       'date' => 1515082138,
-                       'photo' => [
-                                  {
-                                    'file_size' => 1635,
-                                    'file_path' => 'photos/file_0.jpg',
-                                    'file_id' => 'AgADBAADyaoxG84HcVI6E7Xmi3Pq9-bqihoABDUdHq88nDeOf3cAAgI',
-                                    'width' => 90,
-                                    'height' => 67
-                                  },
-                                  {
-                                    'file_size' => 22296,
-                                    'file_id' => 'AgADBAADyaoxG84HcVI6E7Xmi3Pq9-bqihoABKT18AABWeu3sYB3AAIC',
-                                    'width' => 320,
-                                    'height' => 240
-                                  },
-                                  {
-                                    'file_size' => 96554,
-                                    'file_id' => 'AgADBAADyaoxG84HcVI6E7Xmi3Pq9-bqihoABKKvMCPi3sxXgncAAgI',
-                                    'width' => 800,
-                                    'height' => 600
-                                  },
-                                  {
-                                    'file_size' => 158515,
-                                    'height' => 960,
-                                    'file_id' => 'AgADBAADyaoxG84HcVI6E7Xmi3Pq9-bqihoABHALBWIgrje1gXcAAgI',
-                                    'width' => 1280
-                                  }
-                                ],
-                       'chat' => {
-                                 'type' => 'private',
-                                 'first_name' => 'Proch',
-                                 'last_name' => 'Genomics 36',
-                                 'username' => 'telatin',
-                                 'id' => 379759508
-                               },
-                       'from' => {
-                                 'language_code' => 'en-IT',
-                                 'is_bot' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
-                                 'id' => 379759508,
-                                 'username' => 'telatin',
-                                 'first_name' => 'Proch',
-                                 'last_name' => 'Genomics 36'
-                               },
-                       'message_id' => 46
-                     }
-        };
