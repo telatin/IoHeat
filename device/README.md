@@ -43,7 +43,7 @@ Each [Telegram](https://telegram.org) BOT will require an _API token_ to work. T
 ### Bot commands
  - `/status` will return the current temperature, humidity, heating relay status (on/off) and if the thermostat cycle is active
  - `/start` will start the heating process
-  - currently immediately starts the heating cycle
-  - to be implemented a syntax to pospone this like _at 3.30pm_ or _in 8 hours_.
+   - currently immediately starts the heating cycle
+   - to be implemented a syntax to pospone this like _at 3.30pm_ or _in 8 hours_.
  - `/stop` will terminate the heating process (will take up to 20 seconds to stop)
  
