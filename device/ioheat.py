@@ -12,16 +12,46 @@ import os
 import time
 import datetime
 import signal
+import stat
+
+
+def file_age(pathname):
+    return time.time() - os.stat(pathname)[stat.ST_MTIME]
+
+def nice_secs(secs):
+    days = int(secs / 86400)
+    secs -= days * 86400
+    hours = int(secs/3600)
+    secs -= hours * 3600
+    minutes = int(secs/60)
+    secs -= minutes * 60
+    string = ''
+    if (days > 0):
+        string += '{}d '.format(days)
+    if (hours > 0):
+        string += '{}h '.format(hours)
+    if (minutes > 0):
+        string += '{}m '.format(minutes)
+    string += '{}s'.format(secs)
+    return string
+
+
+def timestamp(format):
+    if (format == 'time'):
+        return '{:%H:%M:%S}'.format(datetime.datetime.now())
+    else:
+        return '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+
 
 def ioh_shutdown(signum, frame):
     """
     When the program is interrupted, attempts to remove the lock file and to switch the heating off
     """
     signal.signal(signal.SIGINT, original_sigint)
-
+    timestamp=timestamp()
     try:
         humi, temp = sensor.read()
-        eprint(' [{0}]\t{1:.1f}°C\t{2} '.format(relay.status(), temp, tempbar(temp)))
+        eprint('{3} [{0}]\t{1:.1f}°C\t{2} ioh_shutdown()'.format(relay.status(), temp, tempbar(temp), timestamp))
         relay.off()
         eprint("Relay {}: {}".format(opt.warmerpin, relay.status()))
         if (is_warming(IoH_lock_file)):
@@ -36,6 +66,7 @@ def ioh_shutdown(signum, frame):
 
     # restore the exit gracefully handler here
     signal.signal(signal.SIGINT, ioh_shutdown)
+
 def eprint(*args, **kwargs):
 	"""print to STDERR"""
 	print(*args, file=sys.stderr, **kwargs)
@@ -52,10 +83,11 @@ def create_warming_lock(filename):
     try:
         with open(filename, 'a') as lockfile:
             os.utime(filename, None)
-            print(os.getpid(), file=lockfile)
+            t=timestamp()
+            print('{}\t{}'.format(os.getpid(), t), file=lockfile)
         return 1
     except Exception as e:
-        eprint("Unable to create lock file {} ({})".format(filename, e))
+        eprint("{}\tUnable to create lock file {} ({})".format(t, filename, e))
         return 0
 
 def delete_warming_lock(filename):
@@ -63,7 +95,7 @@ def delete_warming_lock(filename):
         os.remove(filename)
         return 1
     except Exception as e:
-        eprint("Unable to remove lock file {} ({})".format(filename, e))
+        eprint("{}\tUnable to remove lock file {} ({})".format(timestamp(), filename, e))
         return 0
 
 def is_warming(filename):
@@ -270,7 +302,7 @@ class DHT(object):
 
 opt_parser = argparse.ArgumentParser(description='IoHeat thermostat')
 
-opt_parser.add_argument("-x", '--maxtemp', help="Safety max temperature", type=int, default=45)
+opt_parser.add_argument("-x", '--maxtemp', help="Safety max temperature", type=int, default=48)
 opt_parser.add_argument('-a', '--action',
                         help='What to do [status,on,off]',
                         default='status')
@@ -278,7 +310,7 @@ opt_parser.add_argument('-a', '--action',
 opt_parser.add_argument('-t', '--temperature',
                         type=float,
                         help='Final temperature to control',
-                        default=37.5)
+                        default=36.5)
 
 opt_parser.add_argument('-w', '--warmerpin',
                         type=int,
@@ -306,6 +338,7 @@ opt = opt_parser.parse_args()
 
 def main():
     # Warming relay init
+    start_ts = timestamp()
     Grove = GroveRelay
     relay = GroveRelay(opt.warmerpin)
 
@@ -320,7 +353,7 @@ def main():
     IoH_data['interface']['thermo_sensor_pin'] = opt.thermopin
     IoH_data['interface']['thermo_sensor_mode'] = opt.mode
     IoH_data['interface']['IoH_lock_file'] = IoH_lock_file
-
+    IoH_data['interface']['start_timestamp'] = start_ts
     # Initialize with a first Temp reading
     humi, temp = sensor.read()
 
@@ -336,11 +369,11 @@ def main():
         if is_warming(IoH_lock_file):
             IoH_data['status']['heating_cycle'] = 'ON'
 
-        eprint('Sensor DHT{0}, humidity {1:.1f}%, temperature {2:.1f}*'.format(sensor.dht_type, humi, temp))
+        eprint('{3} Sensor DHT{0}, humidity {1:.1f}%, temperature {2:.1f}*'.format(sensor.dht_type, humi, temp, start_ts))
         eprint(' {0:.1f}°C\t{1} '.format(temp, tempbar(temp)))
 
         if (is_warming(IoH_lock_file)):
-            eprint("WARNING: Warming cycle detected, can be an aborted attempt?")
+            eprint("INFO: Warming cycle detected ({})".format(nice_secs(file_age(IoH_lock_file))))
 
         if temp > opt.maxtemp:
             IoH_data['messages']['too_hot'] = "Switching the unit off as temperature is >{}".format(opt.x)

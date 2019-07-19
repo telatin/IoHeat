@@ -54,19 +54,19 @@ my $me = $api->getMe or die;
 my ($offset, $updates) = 0;
 
 # The commands that this bot supports.# file_id of the last sent picture
-my $pic_id; 
+my $pic_id;
 
 my $commands = {
     # Example demonstrating the use of parameters in a command.
     "say"      => sub {
             join " ", splice @_, 1 or "Usage: /say something";
     },
-    
-    
+
+
     "whoami"   => sub {
         sprintf "Hello %s, I am %s, your lab technician! How are you?", shift->{from}{username}, $me->{result}{username}
     },
- 
+
     "temp"    => sub {
         my $s = getStatus();
         sprintf "The device is ready.\nCurrent temperature %s degrees.\nStay warm %s!", sprintf("%.1f", $s->{status}->{temperature}), shift->{from}{username};
@@ -75,7 +75,6 @@ my $commands = {
     "status"    => sub {
       my $s = getStatus();
       my $relay = 'not active';
-
       $relay = 'heater is active now' if ($s->{status}->{heater_active} eq 'ON');
 
       my $output = sprintf "Now *%s°C* (hum %s%)\n*Heater is %s* (%s, server: %s %s)",
@@ -85,6 +84,8 @@ my $commands = {
           $relay,
           $s->{status}->{process},
           $s->{status}->{elapsed};
+
+      $output .= "\n" .ioh_queue();
       +{
               method     => "sendMessage",
               parse_mode => "Markdown",
@@ -113,6 +114,23 @@ my $commands = {
               text => $output,
       }
     },
+
+
+    "schedule"    => sub {
+      print STDERR "[schedule] Status:\n" if ($debug);
+      my $s = getStatus();
+      print STDERR Dumper $s if ($debug);
+      my $time = join " ", splice @_;
+      my $output = ioh_schedule($time);
+
+
+      +{
+              method     => "sendMessage",
+              parse_mode => "Markdown",
+              text => $output,
+      }
+    },
+
 
     "stop"    => sub {
       my $s = getStatus();
@@ -240,7 +258,8 @@ while (1) {
         if (my $text = $u->{message}{text}) { # Text message
             printf "Incoming text message from \@%s\n", $u->{message}{from}{username};
             printf "Text: %s\n", $text;
-            if ($text !~ m!^/[^_].!) { # Not a command
+            if ($text !~ m!^/[^_].!) {
+                # Not a command
                 print STDERR color('red'), "Not a command\n", color('reset');
                 next;
             }
@@ -264,7 +283,7 @@ while (1) {
             $api->$method ({
                 chat_id => $u->{message}{chat}{id},
                 %$res
-            })
+                })
         }
     }
 }
@@ -292,6 +311,34 @@ sub checkProcess {
     }
   }
   return 0;
+}
+
+sub ioh_queue {
+  my $cmd = qq(atq  |  cut -f 2);
+  my $out = '';
+  my @out = `$cmd`;
+  my $c = 0;
+  foreach my $l (@out) {
+    chomp($l);
+    $c++;
+    $out .= " - $l\n";
+  }
+  $out = "**$c requests scheduled**\n" . $out;
+  return ($out, $c);
+}
+sub ioh_schedule {
+  my $when = $_[0];
+  my $message = '';
+
+  my $cmd = qq(echo '$controller -j -a start 2>/dev/null | at $when 2>&1');
+  my ($queue, $total) = ioh_queue();
+  my $schedule = `$cmd`;
+
+  if ($?) {
+    $message .= "_bad time request_\n";
+  } else {
+    $message .= "Request queued: **$total** in queue";
+  }
 }
 sub ioh_start {
 
@@ -332,8 +379,13 @@ sub ioh_stop {
 
 sub lockfile_age {
   my $file = "$ENV{HOME}/.IoHeat.lock";
-  my $secs = time - (stat($file))[9];
-  return formatsec($secs);
+  if (-e $file) {
+    my $created = (stat($file))[9];
+    my $secs = time - $created;
+    return formatsec($secs);
+  } else {
+    return '';
+  }
 }
 
 
@@ -357,8 +409,12 @@ sub getStatus {
 
   my $cmd = qq($controller -j -a status 2>/dev/null);
   my $json = `$cmd`;
+  if ($?) {
+    return undef;
+  }
   my $status = decode_json $json;
-
+  my (undef, $jobs) = ioh_queue();
+  $status->{status}->{jobs} = $jobs;
   if (checkProcess()) {
     $status->{status}->{process} = 'ON';
     $status->{status}->{elapsed} = lockfile_age();
@@ -409,4 +465,3 @@ sub deb_warn {
 
 }
 __END__
-
