@@ -93,6 +93,6 @@ The screen has a default "horizon line", but we can rotate it. See `logo_rotate.
 ## Getting the spatial position with the accelerometer
 
 A first script is `accelerometer_1.py` that shows how to retrieve the 3D position of the device.
-This will introduce a complex data structure called dictionary with three keys, _x_, _y_ and _z_ and their respective value.
+This will introduce a complex data structure called dictionary with three keys, _x_, _y_ and _z_ and their respective value (see [script](accelerometer_1.py)).
 
 ![Axes](gyro.jpg)
