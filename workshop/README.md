@@ -29,8 +29,16 @@ We will use a programming language called Python for our workshop, mainly becaus
 
 Open the "**Thonny**" program from the Rasbperry menu -> programming. You will see that it has three sections, one being the editor where we can write our program, and below (called _shell_), a section where we will be able to see the execution of our program.
 
-Try this first program, saving it as 'hello.py':
+Try this first program, saving it as '`hello.py`':
 ```
 teamName = 'IoHeat team'
 print('Hello, ' + teamName + '!')
+```
+You can execute the script pressing the green arrow button, or F5 from the keyboard.
+
+To use our SenseHat, we'll need to _extend_ Python core capabilities using a specific module. Let's try writing a letter on the LED matrix (`letter.py`):
+```
+from sense_hat import SenseHat
+myHat = SenseHat()
+myHat.show_letter('A')
 ```
