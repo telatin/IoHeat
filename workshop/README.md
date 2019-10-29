@@ -62,4 +62,4 @@ pressure_atm   = pressure_mbars / 1013.25
 print("Pressure: {} Millibars ({} atm)".format(pressure_mbars, pressure_atm))
 ```
 
-The last _print_ function uses the _format_ method to put the content of two variables using `{}` as placeholders.
+The last _print_ function uses the _format_ method to put the content of two variables using `{}` as placeholders. For example, in the `hello.py` script you can write: `print('Hello, {}!'.format(teamName) )`.
