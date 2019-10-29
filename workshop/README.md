@@ -29,6 +29,8 @@ We will use a programming language called Python for our workshop, mainly becaus
 
 Open the "**Thonny**" program from the Rasbperry menu -> programming. You will see that it has three sections, one being the editor where we can write our program, and below (called _shell_), a section where we will be able to see the execution of our program.
 
+:bulb: Note that the full version of the scripts, with comments, is available in this directory.e
+
 Try this first program, saving it as '`hello.py`':
 ```
 teamName = 'IoHeat team'
@@ -63,3 +65,17 @@ print("Pressure: {} Millibars ({} atm)".format(pressure_mbars, pressure_atm))
 ```
 
 The last _print_ function uses the _format_ method to put the content of two variables using `{}` as placeholders. For example, in the `hello.py` script you can write: `print('Hello, {}!'.format(teamName) )`.
+
+## Rolling a die :game_die:
+
+Now let's generate a random number from 1 to 6, and print it on the LED matrix (`die.py`):
+```
+from sense_hat import SenseHat
+import random 
+
+myHAT =  SenseHat()
+number = random.randint(1,6)
+
+print('You got {}'.format(number))
+myHAT.show_letter( str(number) )
+```
