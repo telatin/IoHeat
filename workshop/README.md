@@ -52,3 +52,14 @@ from sense_hat import SenseHat
 myHat = SenseHat()
 myHat.show_message('IoHeat')
 ```
+## Getting a reading from a sensor
+The `get_pressure()` function provided by SenseHAT will return the pressure in millibars. We can simply convert it to atmospheres and then print the result (save this as `barometer.py`).
+```
+from sense_hat import SenseHat
+sense = SenseHat()
+pressure_mbars = sense.get_pressure()
+pressure_atm   = pressure_mbars / 1013.25
+print("Pressure: {} Millibars ({} atm)".format(pressure_mbars, pressure_atm))
+```
+
+The last _print_ function uses the _format_ method to put the content of two variables using `{}` as placeholders.
