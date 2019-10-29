@@ -10,7 +10,7 @@ connected to a miniaturized computer, the [Rapspberry Pi](https://www.raspberryp
 
 The Raspberry Pi is a miniaturized computer build to be:
  * Cheap
- * Small (can be [https://www.raspberrypi.org/blog/raspberry-pi-zero/](smaller))
+ * Small (can be [very small](https://www.raspberrypi.org/blog/raspberry-pi-zero/))
  * Easy to use
  * Easy to connect to electronic components
  * Easy to use as a training and prototyping device
