@@ -6,7 +6,7 @@ Our workshop will introduce the basics concepts of **programming**
 in a less usual context: using input/output **electronic components** (like sensors) 
 connected to a miniaturized computer, the [Rapspberry Pi](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/).
 
-## The Raspberry Pi and the Raspian OS
+### The Raspberry Pi and the Raspian OS
 
 The Raspberry Pi is a miniaturized computer build to be:
  * Cheap
@@ -18,4 +18,19 @@ The Raspberry Pi is a miniaturized computer build to be:
  Being a computer, you must install an Opearting System. Currently you can install a variety of Linux flavours, and a stripped down [Windows](https://www.microsoft.com/en-us/download/details.aspx?id=55029) version.
  We'll focus on the offically supported Linux distribution called **Rasbpian OS**. It comes with pre-installed software and can easily install Raspberry specific packages (in addition to most software you would use under Linux).
  
+### Our sensors kit
+
+You can *manually* connect to your Raspberry Pi a wide range of components, from simple LEDs, to a range of sensors (humidity, temperature, acceleration), small displays, cameras and even fans or motors. 
+To have a simple all-in-one training environment, we'll use the SenseHat, an electronic board carrying an 8x8 LED matrix (that can display some output), a joystick and some sensors. You can [learn more here](https://www.raspberrypi.org/blog/sense-hat-projects/).
+
+## Getting started with Python
  
+We will use a programming language called Python for our workshop, mainly because it's incredibly useful in data science (and bioinformatics). A nice bonus is that is quite simple.
+
+Open the "**Thonny**" program from the Rasbperry menu -> programming. You will see that it has three sections, one being the editor where we can write our program, and below (called _shell_), a section where we will be able to see the execution of our program.
+
+Try this first program, saving it as 'hello.py':
+```
+teamName = 'IoHeat team'
+print('Hello, ' + teamName + '!')
+```
