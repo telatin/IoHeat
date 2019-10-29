@@ -23,13 +23,18 @@ The Raspberry Pi is a miniaturized computer build to be:
 You can *manually* connect to your Raspberry Pi a wide range of components, from simple LEDs, to a range of sensors (humidity, temperature, acceleration), small displays, cameras and even fans or motors. 
 To have a simple all-in-one training environment, we'll use the SenseHat, an electronic board carrying an 8x8 LED matrix (that can display some output), a joystick and some sensors. You can [learn more here](https://www.raspberrypi.org/blog/sense-hat-projects/).
 
+### Our final project
+
+We well make a "digital die" :game_die:: when we rotate the Raspberry and put the LED matrix in vertical position, we
+will display a random number from 1 to 6. To do this we need to be able to code in Python and interact with the accelerometer to get the position of the Raspberry in the space, and to print a number on the screen.
+
 ## Getting started with Python
  
 We will use a programming language called Python for our workshop, mainly because it's incredibly useful in data science (and bioinformatics). A nice bonus is that is quite simple.
 
 Open the "**Thonny**" program from the Rasbperry menu -> programming. You will see that it has three sections, one being the editor where we can write our program, and below (called _shell_), a section where we will be able to see the execution of our program.
 
-:bulb: Note that the full version of the scripts, with comments, is available in this directory.e
+:bulb: Note that the full version of the scripts, with comments, is available in this directory!
 
 Try this first program, saving it as '`hello.py`':
 ```
@@ -79,3 +84,6 @@ number = random.randint(1,6)
 print('You got {}'.format(number))
 myHAT.show_letter( str(number) )
 ```
+
+## Printing an image on the LED matrix
+For this, see the `logo.py` script. Try changing the colors, and even the image!
