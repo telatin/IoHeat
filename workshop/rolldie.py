@@ -2,6 +2,7 @@ from time import sleep
 from sense_hat import SenseHat
 import random 
 
+# Here we define our very own function. See logo.py
 def print_logo():
     X = (255, 0, 0)
     O = (0, 0, 0)
@@ -47,12 +48,7 @@ sense = SenseHat()
 sense.clear()
 i = 0
 origin = (7, 7)
-#         1   2   3    4
-for r in [0, 90, 180, 270]:
-        sense.set_rotation(r)
-        i += 1
-        sense.show_letter(str(i))
-        sleep(0.3)
+
         
 last_rotation = -1        
 while True:
