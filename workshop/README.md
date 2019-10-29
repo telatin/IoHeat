@@ -87,3 +87,12 @@ myHAT.show_letter( str(number) )
 
 ## Printing an image on the LED matrix
 For this, see the `logo.py` script. Try changing the colors, and even the image!
+
+The screen has a default "horizon line", but we can rotate it. See `logo_rotate.py` for this.
+
+## Getting the spatial position with the accelerometer
+
+A first script is `accelerometer_1.py` that shows how to retrieve the 3D position of the device.
+This will introduce a complex data structure called dictionary with three keys, _x_, _y_ and _z_ and their respective value.
+
+![Axes](gyro.jpg)
