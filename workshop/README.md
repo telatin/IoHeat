@@ -60,7 +60,8 @@ myHat = SenseHat()
 myHat.show_message('IoHeat')
 ```
 ## Getting a reading from a sensor
-The `get_pressure()` function provided by SenseHAT will return the pressure in millibars. We can simply convert it to atmospheres and then print the result (save this as `barometer.py`).
+
+The `get_pressure()` function provided by SenseHAT will return the pressure in millibars. We can simply convert it to atmospheres and then print the result (save this as `barometer.py`). The full list of functions provided by the SenseHat is [documented here](https://pythonhosted.org/sense-hat/api/).
 ```
 from sense_hat import SenseHat
 sense = SenseHat()
@@ -93,6 +94,16 @@ The screen has a default "horizon line", but we can rotate it. See `logo_rotate.
 ## Getting the spatial position with the accelerometer
 
 A first script is `accelerometer_1.py` that shows how to retrieve the 3D position of the device.
-This will introduce a complex data structure called dictionary with three keys, _x_, _y_ and _z_ and their respective value (see [script](accelerometer_1.py)).
+This will introduce a complex data structure called dictionary with three keys, _x_, _y_ and _z_ and their respective value.
+
+The script also introduces an _infinite loop_ that is we repeat a set of instruction indefinitely (see [script](accelerometer_1.py)).
+
 
 ![Axes](gyro.jpg)
+
+After getting an idea of what the accelerometer does, we can use the information to light a single pixel of the matrix. We cover this in [accelerometer_2.py](accelerometer_2.py).
+
+## Putting it all together
+
+Given the elements described we have everything we need to make an amazing toy: a digital die!
+See: [rolldie.py](rolldie.py).
