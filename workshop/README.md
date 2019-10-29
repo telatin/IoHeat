@@ -42,3 +42,13 @@ from sense_hat import SenseHat
 myHat = SenseHat()
 myHat.show_letter('A')
 ```
+What happens if you pass as argument of the `show_letter()` function the value `'IoHeat'`?
+Familiarizing with the _errors_ reported, is a very important step in our journey in Python.
+
+To address our problem: there is a more appropriate function that will accept a _string_ instead of a single _character_:
+
+```
+from sense_hat import SenseHat
+myHat = SenseHat()
+myHat.show_message('IoHeat')
+```
