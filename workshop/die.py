@@ -1,3 +1,10 @@
+"""
+Every time you run this script,
+it will print a random number from 1 to 6
+in the SenseHAT matrix
+"""
+
+# We start importing our libraries: sensehat and random
 from sense_hat import SenseHat
 import random 
 

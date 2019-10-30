@@ -4,11 +4,9 @@ import random
 
 # Here we define our very own function. See logo.py
 def print_logo():
-    X = (255, 90, 55)    # pink
-    O = (0, 0, 0)        # black
-    T = (0, 155, 255)    # cyan
-    
-    # We define 'logo' as a list of triplets (colors)
+    X = (255, 0, 0)
+    O = (0, 0, 0)
+    T = (0, 0, 255)
     logo = [
     X, X, X, O, O, X, X, X,
     X, O, O, O, O, O, O, X,
@@ -22,8 +20,89 @@ def print_logo():
 
     
     sense.set_pixels(logo)
-
-
+    
+def print_die(number):
+    X = (255, 255, 255)
+    O = (0, 0, 127)
+    x = (200, 200, 200)
+    # we make a list of matrices, one per "die face"
+    numbers = [
+         [
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O
+        ],
+         
+        [
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, O, O, O,
+        O, X, X, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, X, X, O,
+        O, O, O, O, O, X, X, O,
+        O, O, O, O, O, O, O, O
+        ],
+         
+                  
+        [
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, O, O, O,
+        O, X, X, O, O, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, O, O, X, X, O,
+        O, O, O, O, O, X, X, O,
+        O, O, O, O, O, O, O, O
+        ],
+         
+                  
+        [
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O
+        ],
+         
+                  
+        [
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O,
+        O, O, O, x, x, O, O, O,
+        O, O, O, X, X, O, O, O,
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O
+        ],
+         
+                  
+        [
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, x, x, O, O, x, x, O,
+        O, O, O, O, O, O, O, O,
+        O, X, X, O, O, X, X, O,
+        O, O, O, O, O, O, O, O
+        ], 
+    ]
+    if number > 6 or number < 0:
+        return print_logo()
+    else:
+        sense.set_pixels(numbers[number-1])
+    
+    
 def get_rotation():
     """
     This function get the spatial position from the accelerometer
@@ -88,7 +167,8 @@ while True:
         # Get a random number
         random_number = random.randint(1,6)
         # and print it to the screen
-        sense.show_letter(str(random_number), (0,255,0))
-        # The following instruction prints to the terminal (debug)
+        print_die(random_number)
+        
+    # The following instruction prints to the terminal (debug)
     print('Rotation={}'.format(r))
     sleep(1)
