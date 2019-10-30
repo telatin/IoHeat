@@ -4,9 +4,14 @@ import random
 
 # Here we define our very own function. See logo.py
 def print_logo():
-    X = (255, 0, 0)
+    colors1 = [ (255, 0, 0), (255, 255, 0), (255,0,255), (255,255,255)]
+    colors2 = [ (0, 0, 255), (0 , 190, 0),  (100, 100, 100), (255,0,0)]
+    X = colors1[random.randint(0, len(colors1)-1 ) ]
+    
+    T = colors2[random.randint(0, len(colors2)-1 ) ]
     O = (0, 0, 0)
-    T = (0, 0, 255)
+    
+    
     logo = [
     X, X, X, O, O, X, X, X,
     X, O, O, O, O, O, O, X,
@@ -25,6 +30,7 @@ def print_die(number):
     X = (255, 255, 255)
     O = (0, 0, 127)
     x = (200, 200, 200)
+    R = (255, 0, 0)
     # we make a list of matrices, one per "die face"
     numbers = [
          [
@@ -87,14 +93,14 @@ def print_die(number):
          
                   
         [
-        O, O, O, O, O, O, O, O,
-        O, X, X, O, O, X, X, O,
-        O, O, O, O, O, O, O, O,
-        O, X, X, O, O, X, X, O,
-        O, x, x, O, O, x, x, O,
-        O, O, O, O, O, O, O, O,
-        O, X, X, O, O, X, X, O,
-        O, O, O, O, O, O, O, O
+        R, R, R, R, R, R, R, R,
+        R, X, X, R, R, X, X, R,
+        R, R, R, R, R, R, R, R,
+        R, X, X, R, R, X, X, R,
+        R, x, x, R, R, x, x, R,
+        R, R, R, R, R, R, R, R,
+        R, X, X, R, R, X, X, R,
+        R, R, R, R, R, R, R, R
         ], 
     ]
     if number > 6 or number < 0:

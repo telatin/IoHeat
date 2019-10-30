@@ -2,6 +2,7 @@ from sense_hat import SenseHat
 from time import sleep
 
 sense = SenseHat()
+sense.clear()
 while True:
     if sense.stick.get_events():
         sense.stick.get_events()
