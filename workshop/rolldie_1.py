@@ -1,3 +1,9 @@
+"""
+A script that will roll a die every time the user flip 
+the LED matrix vertically.
+Put the matrix horizontally to rest.
+This version will rotate the number in the display matrix accordingly.
+"""
 from time import sleep
 from sense_hat import SenseHat
 import random 
@@ -42,8 +48,8 @@ def get_rotation():
     upper = 0.75 * scale
     
     # We only need x and y to detect verticality of the device
-    x = int(a['x'] * scale)
-    y = int(a['y'] * scale)
+    x = 100 if int(a['x'] * scale) < 100 else int(a['x'] * scale)
+    y = 100 if int(a['y'] * scale) < 100 else int(a['y'] * scale)
     
     if (abs(x) < lower and y > upper):
         return 0

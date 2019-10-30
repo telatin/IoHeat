@@ -2,6 +2,7 @@
 A script to generate random patterns
 on the LED matrix of the SenseHAT
 """
+
 from sense_hat import SenseHat
 import random 
 from time import sleep
@@ -9,6 +10,8 @@ from time import sleep
 # Import your SenseHAT as an object, we can call it "myHAT"
 myHAT =  SenseHat()
 myHAT.clear()
+
+# This is a list [...] of triplets ( , , )
 colors = [(0,0,255), (0,255,255), (255,250,250)]
 
 # First we draw a random pattern
@@ -25,6 +28,7 @@ for row in range(0, 8):
 sleep(2)
         
 # Now we can "fade out" reducing the color values at each step
+
 # FIRST: we define a function "darkening" a color (triplet of values)
 def darken(color):
     step = 10
