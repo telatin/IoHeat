@@ -91,9 +91,9 @@ myHAT.show_letter( str(number) )
 ```
 
 ## Printing an image on the LED matrix
-For this, see the `[logo.py](logo.py)` script. Try changing the colors, and even the image!
+For this, see the [logo.py](logo.py) script. Try changing the colors, and even the image!
 
-The screen has a default "horizon line", but we can rotate it. See `[logo_rotate.py](logo_rotate.py).py` for this.
+The screen has a default "horizon line", but we can rotate it. See [logo_rotate.py](logo_rotate.py) for this.
 
 ## Getting the spatial position with the accelerometer
 
