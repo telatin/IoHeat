@@ -1,7 +1,7 @@
 # Setting up your Raspberry Pi
 
 ### Connect the cables
-You will need to connect the Monitor (HDMI port), a keyboard and a mouse (USB) and finally you'll need to plug the SenseHat on the GPIO port.
+You will need to connect the Monitor (HDMI port), a keyboard and a mouse (USB) and finally you'll need to plug the SenseHat on the GPIO port. See [here](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat/2).
 
 
 ### Install software and workshop files
