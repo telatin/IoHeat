@@ -37,7 +37,7 @@ def get_rotation():
     (see logo_rotate.py and accelerometer_X.py)
     """
     a = sense.get_accelerometer_raw()
-    print('{}    {}    {}'.format(int(a['x']*100),  int(a['y']*100),int(a['z']*100)  ))
+    print('x {}   y {}   z {}'.format(int(a['x']*100),  int(a['y']*100),int(a['z']*100)  ))
     
     # Accelerometer returns ratios from 0 to 1, to have simpler
     # number to work with we can scale it to an integer 0-100
@@ -48,8 +48,8 @@ def get_rotation():
     upper = 0.75 * scale
     
     # We only need x and y to detect verticality of the device
-    x = 100 if int(a['x'] * scale) < 100 else int(a['x'] * scale)
-    y = 100 if int(a['y'] * scale) < 100 else int(a['y'] * scale)
+    x = 100 if int(a['x'] * scale) > 100 else int(a['x'] * scale)
+    y = 100 if int(a['y'] * scale) > 100 else int(a['y'] * scale)
     
     if (abs(x) < lower and y > upper):
         return 0

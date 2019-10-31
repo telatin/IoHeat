@@ -10,7 +10,7 @@ from time import sleep
 myHAT =  SenseHat()
 myHAT.clear()
 
-intensity3 = 0  # Try changing to 255
+intensity3 = 255  # Try changing to 255
 
 # This is an iteration in the range 0 <= x < 8
 for row in range(0, 8):

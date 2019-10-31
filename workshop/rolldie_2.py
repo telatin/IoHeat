@@ -134,8 +134,8 @@ def get_rotation():
     upper = 0.75 * scale
     
     # We only need x and y to detect verticality of the device
-    x = 100 if int(a['x'] * scale) < 100 else int(a['x'] * scale)
-    y = 100 if int(a['y'] * scale) < 100 else int(a['y'] * scale)
+    x = 100 if int(a['x'] * scale) > 100 else int(a['x'] * scale)
+    y = 100 if int(a['y'] * scale) > 100 else int(a['y'] * scale)
     
     if (abs(x) < lower and y > upper):
         return 0

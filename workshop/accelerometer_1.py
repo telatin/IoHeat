@@ -1,3 +1,7 @@
+"""
+This script will read data from the accelerometer every 1 second
+printing the data received to the terminal
+"""
 # We import a new function, sleep, that will "pause" for some seconds our script
 from time import sleep
 from sense_hat import SenseHat
