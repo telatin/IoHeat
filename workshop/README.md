@@ -28,6 +28,8 @@ To have a simple all-in-one training environment, we'll use the SenseHat, an ele
 We well make a "digital die" :game_die:: when we rotate the Raspberry and put the LED matrix in vertical position, we
 will display a random number from 1 to 6. To do this we need to be able to code in Python and interact with the accelerometer to get the position of the Raspberry in the space, and to print a number on the screen.
 
+:bulb: We already configured the Raspberries for the workshop. Should you wish to try at home, read how to [install the required packages](setup.md).
+
 ## Getting started with Python
  
 We will use a programming language called Python for our workshop, mainly because it's incredibly useful in data science (and bioinformatics). A nice bonus is that is quite simple.
