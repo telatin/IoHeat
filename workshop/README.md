@@ -28,6 +28,8 @@ To have a simple all-in-one training environment, we'll use the SenseHat, an ele
 We well make a "digital die" :game_die:: when we rotate the Raspberry and put the LED matrix in vertical position, we
 will display a random number from 1 to 6. To do this we need to be able to code in Python and interact with the accelerometer to get the position of the Raspberry in the space, and to print a number on the screen.
 
+![Random numbers](https://i.pinimg.com/originals/2c/61/6a/2c616a9a9f542dffd56b10da4adb4bae.gif)
+
 :bulb: We already configured the Raspberries for the workshop. Should you wish to try at home, read how to [install the required packages](setup.md).
 
 ## Getting started with Python
