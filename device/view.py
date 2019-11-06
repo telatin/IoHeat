@@ -402,7 +402,7 @@ def main():
 
 
 
-            eprint('{2} {1:.1f}°C\t{1} '.format(temp, tempbar(temp), heating))
+            eprint('{2} {0:.1f}°C\t{1} '.format(temp, tempbar(temp), heating))
             time.sleep(2)
 
     elif opt.action == 'on':
