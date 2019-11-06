@@ -392,9 +392,19 @@ def main():
     elif opt.action == 'view':
         while 1:
             humi, temp = sensor.read()
-            eprint(' {0:.1f}°C\t{1} '.format(temp, tempbar(temp)))
+            if is_warming(IoH_lock_file):
+                if relay.status():
+                    heating = ' [HEATING NOW] '
+                else:
+                    heating = ' [  HEATING  ] '
+            else:
+                heating =     ' [   Ready   ] '
+
+
+
+            eprint('{2} {1:.1f}°C\t{1} '.format(temp, tempbar(temp), heating))
             time.sleep(2)
-            
+
     elif opt.action == 'on':
         eprint("- IoHeat ON")
         eprint("- This is dangerous: heating will be on until manually switched off!")
