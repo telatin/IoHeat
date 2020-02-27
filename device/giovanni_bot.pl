@@ -77,7 +77,15 @@ my $commands = {
         }
 
     },
+    "update" => sub {
+	my $raw = `$RealBin/update 2>&1`;
+        +{
+            method     => "sendMessage",
+            parse_mode => "Markdown",
+            text       => $raw,
+        };
 
+    },
     "hello" => sub {
 
         my $u = '' . $me->{result}{username};
