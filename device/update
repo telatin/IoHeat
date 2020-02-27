@@ -1,4 +1,13 @@
 #!/bin/bash
 
 echo " Updating test scripts"
-rsync -az ubuntu@my.seq.space:device/* ~/device/
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+cd "$DIR"
+
+if [ ! -d "ioheat" ]; then
+	echo "A1 Cloning"
+	git clone https://github.com/telatin/ioheat
+fi
+cd ioheat
+git pull
+cp -v "$DIR"/ioheat/device/* "$DIR"
